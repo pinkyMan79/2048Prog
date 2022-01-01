@@ -2,7 +2,7 @@ public class Functions extends Colors2048{
 
     public static int score = 0;
 
-    public static String[] colorsForNumbers = new String[]{ANSI_CYAN, ANSI_GREEN, ANSI_BLUE, ANSI_PURPLE, ANSI_RED, ANSI_WHITE_BACKGROUND, ANSI_CYAN_BACKGROUND, ANSI_GREEN_BACKGROUND, ANSI_BLUE_BACKGROUND, ANSI_PURPLE_BACKGROUND, ANSI_RED_BACKGROUND};
+    public static String[] colorsForNumbers = new String[]{ANSI_WHITE, ANSI_CYAN, ANSI_GREEN, ANSI_BLUE, ANSI_PURPLE, ANSI_RED, ANSI_WHITE_BACKGROUND, ANSI_CYAN_BACKGROUND, ANSI_GREEN_BACKGROUND, ANSI_BLUE_BACKGROUND, ANSI_PURPLE_BACKGROUND, ANSI_RED_BACKGROUND};
 
     private static int[] getVertical(int[][] a, int point) {
 
@@ -48,8 +48,8 @@ public class Functions extends Colors2048{
 
                     if (sumStack[j - 1] == sumStack[j]) {
 
-                        sumStack[j] = 0;
-                        sumStack[j - 1] *= 2;
+                        sumStack[j - 1] = 0;
+                        sumStack[j] *= 2;
 
                         score += sumStack[j - 1];
 
@@ -336,7 +336,7 @@ public class Functions extends Colors2048{
 
                 if ((a[i][j] + "").length() == 1){
 
-                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + "    ");
+                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5)] + a[i][j] + ANSI_RESET + "    ");
 
                 }
                 if ((a[i][j] + "").length() == 2){
