@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class Main extends Colors2048 {
 
     static Scanner sc = new Scanner(System.in);
 
@@ -8,13 +8,15 @@ public class Main {
 
         int[][] matrix = new int[5][5];
 
-        System.out.println("Use keys: " + "\n" +
+
+
+        System.out.println(ANSI_GREEN + "Use keys: " + "\n" +
                 "% ------||------ %" + "\n" + "\n" +
                 "|->   8 to UP" + "\n" +  "\n" +
                 "|->  4 to LEFT" + "\n" + "\n" +
                 "|->  2 to DOWN" + "\n" + "\n" +
                 "|->  6 to RIGHT" + "\n" + "\n" +
-                "% ------||------ %"
+                "% ------||------ %" + ANSI_RESET
         );
 
         int in;
@@ -27,6 +29,21 @@ public class Main {
 
             Functions.move(matrix, in);
 
+            if (!Functions.isGameRunning(matrix)){
+
+                if (Functions.check(matrix)){
+
+                    System.out.println("^.^^^^^^You Win^^^^^^.^");
+
+                }else {
+
+                    System.out.println("<<<<<<<<You Lose>>>>>>>>");
+
+                }
+
+                break;
+
+            }
 
         }
 

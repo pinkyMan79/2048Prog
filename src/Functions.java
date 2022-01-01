@@ -1,4 +1,8 @@
-public class Functions {
+public class Functions extends Colors2048{
+
+    public static int score = 0;
+
+    public static String[] colorsForNumbers = new String[]{ANSI_CYAN, ANSI_GREEN, ANSI_BLUE, ANSI_PURPLE, ANSI_RED, ANSI_WHITE_BACKGROUND, ANSI_CYAN_BACKGROUND, ANSI_GREEN_BACKGROUND, ANSI_BLUE_BACKGROUND, ANSI_PURPLE_BACKGROUND, ANSI_RED_BACKGROUND};
 
     private static int[] getVertical(int[][] a, int point) {
 
@@ -47,6 +51,8 @@ public class Functions {
                         sumStack[j] = 0;
                         sumStack[j - 1] *= 2;
 
+                        score += sumStack[j - 1];
+
                     }
 
                     a[j][i] = sumStack[j];
@@ -87,6 +93,8 @@ public class Functions {
 
                         sumStack[j + 1] = 0;
                         sumStack[j] *= 2;
+
+                        score += sumStack[j];
 
                     }
 
@@ -129,6 +137,7 @@ public class Functions {
                         sumStack[j] = 0;
                         sumStack[j + 1] *= 2;
 
+                        score += sumStack[j + 1];
                     }
 
 
@@ -169,6 +178,8 @@ public class Functions {
                         sumStack[j] = 0;
                         sumStack[j + 1] *= 2;
 
+                        score += sumStack[j + 1];
+
                     }
 
 
@@ -197,7 +208,7 @@ public class Functions {
 
     }
 
-    public static int[] sortRight(int[] arr) {
+    private static int[] sortRight(int[] arr) {
 
         int count1 = 0;
 
@@ -246,7 +257,7 @@ public class Functions {
 
     }
 
-    public static int[] sortLeft(int[] arr) {
+    private static int[] sortLeft(int[] arr) {
 
         int count = 0;
 
@@ -269,6 +280,53 @@ public class Functions {
 
     public static void outputMatrix(int[][] a) {
 
+        System.out.println();
+        System.out.println();
+        String s = ANSI_BLACK + "^.^SCORE^.^" + ANSI_RESET;
+        System.out.println(ANSI_WHITE_BACKGROUND + s + ANSI_RESET);
+
+
+        if ((score+"").length() == 1){
+
+            System.out.println(ANSI_CYAN + "#######" + "\n" +
+                    "#" + score + "----#" + "\n" +
+                    "#######" + ANSI_RESET
+            );
+
+        }
+        if ((score+"").length() == 2){
+
+            System.out.println(ANSI_GREEN + "#######" + "\n" +
+                    "#" + score + "---#" + "\n" +
+                    "#######" + ANSI_RESET
+            );
+
+        }
+        if ((score+"").length() == 3){
+
+            System.out.println(ANSI_BLUE + "#######" + "\n" +
+                    "#" + score + "--#" + "\n" +
+                    "#######" + ANSI_RESET
+            );
+
+        }
+        if ((score+"").length() == 4){
+
+            System.out.println(ANSI_PURPLE + "#######" + "\n" +
+                    "#" + score + "-#" + "\n" +
+                    "#######" + ANSI_RESET
+            );
+
+        }
+        if ((score+"").length() == 5){
+
+            System.out.println(ANSI_RED + "#######" + "\n" +
+                    "#" + score + "#" + "\n" +
+                    "#######" + ANSI_RESET
+            );
+
+        }
+
         for (int i = 0; i < a.length; i++) {
 
             System.out.println();
@@ -278,22 +336,22 @@ public class Functions {
 
                 if ((a[i][j] + "").length() == 1){
 
-                    System.out.print(a[i][j] + "    ");
+                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + "    ");
 
                 }
                 if ((a[i][j] + "").length() == 2){
 
-                    System.out.print(a[i][j] + "   ");
+                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + "   ");
 
                 }
                 if ((a[i][j] + "").length() == 3){
 
-                    System.out.print(a[i][j] + "  ");
+                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + "  ");
 
                 }
                 if ((a[i][j] + "").length() == 4){
 
-                    System.out.print(a[i][j] + "  ");
+                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + " ");
 
                 }
 
@@ -302,6 +360,53 @@ public class Functions {
 
         }
 
+    }
+
+    public static boolean isGameRunning(int[][] a){
+
+        int cellCount = a.length * a.length;
+        int c = 0;
+
+        for (int i = 0; i < a.length; i++) {
+
+            for (int j = 0; j < a.length; j++) {
+
+                if (a[i][j] != 0){
+
+                    c ++;
+
+                }
+
+            }
+
+        }
+
+        return cellCount != c;
+
+    }
+
+    public static boolean check(int[][] a){
+
+        boolean found2048 = false;
+
+        if (!isGameRunning(a)){
+
+            for (int i = 0; i < a.length; i++) {
+
+                for (int j = 0; j < a.length; j++) {
+
+                    if (a[i][j] == 2048){
+
+                        return true;
+
+                    }
+
+                }
+
+            }
+
+        }
+        return false;
     }
 
 }
