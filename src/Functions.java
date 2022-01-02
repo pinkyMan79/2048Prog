@@ -336,22 +336,22 @@ public class Functions extends Colors2048{
 
                 if ((a[i][j] + "").length() == 1){
 
-                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5)] + a[i][j] + ANSI_RESET + "    ");
+                    System.out.print(colorsForNumbers[toBinarySystem(a[i][j])] + a[i][j] + ANSI_RESET + "    ");
 
                 }
                 if ((a[i][j] + "").length() == 2){
 
-                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + "   ");
+                    System.out.print(colorsForNumbers[toBinarySystem(a[i][j])] + a[i][j] + ANSI_RESET + "   ");
 
                 }
                 if ((a[i][j] + "").length() == 3){
 
-                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + "  ");
+                    System.out.print(colorsForNumbers[toBinarySystem(a[i][j])] + a[i][j] + ANSI_RESET + "  ");
 
                 }
                 if ((a[i][j] + "").length() == 4){
 
-                    System.out.print(colorsForNumbers[(int)Math.pow(a[i][j], 0.5) + 1] + a[i][j] + ANSI_RESET + " ");
+                    System.out.print(colorsForNumbers[toBinarySystem(a[i][j])] + a[i][j] + ANSI_RESET + " ");
 
                 }
 
@@ -407,6 +407,30 @@ public class Functions extends Colors2048{
 
         }
         return false;
+    }
+
+    private static int toBinarySystem(int n){
+
+        String numBin = "";
+
+        while (n > 0){
+
+            numBin += n % 2 + "";
+
+            if (n % 2 == 0){
+
+                n = n /2;
+
+            }else {
+
+                n = (int)(n / 2) - 1;
+
+            }
+
+        }
+
+        return numBin.length();
+
     }
 
 }

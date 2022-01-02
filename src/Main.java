@@ -33,11 +33,11 @@ public class Main extends Colors2048 {
 
                 if (Functions.check(matrix)){
 
-                    System.out.println("^.^^^^^^You Win^^^^^^.^");
+                    System.out.println(ANSI_CYAN + "^.^^^^^^You Win^^^^^^.^" + ANSI_RESET);
 
                 }else {
 
-                    System.out.println("<<<<<<<<You Lose>>>>>>>>");
+                    System.out.println(ANSI_RED + "<<<<<<<<You Lose>>>>>>>>" + ANSI_RESET);
 
                 }
 
